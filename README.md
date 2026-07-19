@@ -1,18 +1,18 @@
-# Vani AI — Speech & Communication Coaching Platform 🎙️✨
+# Vani AI — Speech & Communication Coaching Platform
 
 **Vani AI** is an intelligent, full-stack, voice-first English speaking and communication coaching application. Built to help users build conversational fluency, pronunciation accuracy, grammatical precision, and general speech confidence through interactive real-time AI practice.
 
 ---
 
-## 🌟 Key Features
+## Key Features
 
-- **🎙️ Vani AI Voice Partner**: Interactive real-time voice agent with browser-native low-latency Speech-to-Text and natural Text-to-Speech synthesis.
-- **🚀 Turn-Based Progressive Difficulty**: Conversations automatically scale turn-by-turn (🌱 **Easy Warm-up** → 🚀 **Medium Expressive** → 🔥 **Hard Deep-Thought**).
-- **🏆 Daily Challenges (GD & Picture Description)**: Alternate-day timed prompts for Group Discussion (GD) and Picture Description with audio recording and instant AI Coach feedback.
-- **💼 Mock Interviews**: Simulates professional job interviews with custom roles, questions, timed audio responses, and multi-criteria evaluations.
-- **📊 Speech Analytics & CEFR Forecast**: Real-time confidence, fluency, pronunciation scoring via Wav2Vec2 CTC alignment, and CEFR progression projections (A1 to C2).
-- **⚠️ Non-English & Hindi Immersion Alert**: Real-time warning alerts when non-English or Hindi transliterated words are spoken to enforce 100% English immersion.
-- **🔄 Instant Session Resets**: One-click resetting of partner sessions to restart fresh at the warm-up difficulty level.
+- ** Vani AI Voice Partner**: Interactive real-time voice agent with browser-native low-latency Speech-to-Text and natural Text-to-Speech synthesis.
+- ** Turn-Based Progressive Difficulty**: Conversations automatically scale turn-by-turn (**Easy Warm-up** → **Medium Expressive** → **Hard Deep-Thought**).
+- ** Daily Challenges (GD & Picture Description)**: Alternate-day timed prompts for Group Discussion (GD) and Picture Description with audio recording and instant AI Coach feedback.
+- ** Mock Interviews**: Simulates professional job interviews with custom roles, questions, timed audio responses, and multi-criteria evaluations.
+- ** Speech Analytics & CEFR Forecast**: Real-time confidence, fluency, pronunciation scoring via Wav2Vec2 CTC alignment, and CEFR progression projections (A1 to C2).
+- ** Non-English & Hindi Immersion Alert**: Real-time warning alerts when non-English or Hindi transliterated words are spoken to enforce 100% English immersion.
+- ** Instant Session Resets**: One-click resetting of partner sessions to restart fresh at the warm-up difficulty level.
 
 ---
 
