@@ -58,14 +58,20 @@ except (ModuleNotFoundError, ImportError):
 
 app = FastAPI(title='ConviAI Backend')
 
-# CORS — allow the Next.js dev server (3000) and the legacy Vite dev server (5173),
-# plus the production cloud deploys. The Vite origin is kept harmless.
+# CORS — allow local dev servers, Cloudflare Workers/Pages, and Render backend origins
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        'http://localhost:3000',
+        'http://127.0.0.1:3000',
+        'http://localhost:5173',
+        'http://127.0.0.1:5173',
+        'https://vina.aayushmishra5510c.workers.dev',
+        'https://model-vina.onrender.com',
+    ],
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allow_headers=['*'],
 )
 
 
