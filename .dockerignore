@@ -1,0 +1,42 @@
+# Build / VCS / OS junk
+.git/
+.gitignore
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+
+# Node / Next.js
+client/node_modules/
+client/.next/
+client/.turbo/
+client/out/
+
+# Local config & secrets
+.env
+.env.*
+!.env.example
+**/session_store.json
+**/conviai.db
+**/*.sqlite
+**/*.sqlite3
+
+# Docs and binaries that don't belong in a build context
+*.pdf
+*.docx
+PLAN.md
+read.md
+README.md
+LICENSE
+
+# The ffmpeg binary that used to live in the repo
+server/converters/ffmpeg
+server/converters/ffmpeg.exe

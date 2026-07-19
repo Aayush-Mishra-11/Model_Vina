@@ -1,0 +1,22 @@
+fastapi
+uvicorn[standard]
+requests
+python-multipart
+python-dotenv
+faster-whisper
+pyjwt
+
+# Grammar checking (3000+ rules, runs locally, free). Optional — the pipeline
+# falls back to a diff-based check if the package or Java runtime is missing.
+# Install: pip install language-tool-python
+# language-tool-python>=2.7
+
+# Wav2Vec 2.0 phoneme-level pronunciation scoring. Required for
+# pipeline.process_audio_session to use a real ASR model for pronunciation
+# alignment instead of a heuristic. torch is already a wheel dep; the
+# transformers package brings the model loader.
+transformers>=4.40
+soundfile>=0.12
+torch
+pydub
+audioop-lts

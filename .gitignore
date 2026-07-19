@@ -1,0 +1,23 @@
+node_modules/
+dist/
+build/
+.next/
+.env
+.env.*
+.DS_Store
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+server/session_store.json
+.venv/
+.chroma/
+server/.chroma/
+server/conviai.db
+*.db
+
+# Excluded documentation reports and local test scripts
+deployment_guide.md
+project_report.md
+smoke_test.py
+ws_test.py

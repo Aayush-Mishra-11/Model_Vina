@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light Mode: White Smoke base, Midnight Blue text, Sage Primary, Peru Accent */
+    --background: 43 30% 95%; /* #F7F5F0 White Smoke */
+    --foreground: 210 29% 24%; /* #2C3E50 Midnight Blue */
+    --card: 0 0% 100%;
+    --card-foreground: 210 29% 24%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 29% 24%;
+    --primary: 142 18% 45%; /* #7A9E87 Light Slate Gray / Sage Primary */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 29% 92%;
+    --secondary-foreground: 210 29% 24%;
+    --muted: 210 16% 90%;
+    --muted-foreground: 210 16% 45%;
+    --accent: 20 56% 53%; /* #C4714A Peru Secondary Accent */
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 142 40% 45%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --border: 210 20% 86%;
+    --input: 210 20% 86%;
+    --ring: 142 18% 45%;
+    --radius: 1rem;
+  }
+
+  .dark {
+    /* Dark Mode: Deep Midnight Blue base, White Smoke text, Sage Primary, Peru Accent */
+    --background: 210 29% 14%; /* Deep Midnight Blue #1A2530 */
+    --foreground: 43 30% 96%; /* #F7F5F0 White Smoke */
+    --card: 210 29% 22%; /* #2C3E50 Midnight Blue Card */
+    --card-foreground: 43 30% 96%;
+    --popover: 210 29% 22%;
+    --popover-foreground: 43 30% 96%;
+    --primary: 142 20% 55%; /* #7A9E87 Sage Slate Primary */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 25% 28%; /* #34495E */
+    --secondary-foreground: 43 30% 96%;
+    --muted: 210 25% 28%;
+    --muted-foreground: 210 15% 72%;
+    --accent: 20 56% 58%; /* #C4714A Peru Secondary Accent */
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 142 40% 52%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 55%;
+    --warning-foreground: 0 0% 100%;
+    --border: 210 22% 32%; /* #3A506B */
+    --input: 210 22% 32%;
+    --ring: 142 20% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1;
+  }
+  ::selection {
+    @apply bg-primary/30 text-primary-foreground;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-card/70 backdrop-blur-xl backdrop-saturate-150 border border-white/10 shadow-card;
+  }
+  .glass-strong {
+    @apply bg-card/85 backdrop-blur-2xl backdrop-saturate-150 border border-white/15 shadow-card;
+  }
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-emerald-300 to-accent;
+  }
+  .text-gradient-vani {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#7A9E87] via-[#F7F5F0] to-[#C4714A];
+  }
+  .bg-vani-gradient {
+    background: linear-gradient(135deg, #7A9E87 0%, #2C3E50 50%, #C4714A 100%);
+  }
+  .bg-vani-card {
+    background: linear-gradient(135deg, rgba(44, 62, 80, 0.95) 0%, rgba(30, 44, 58, 0.98) 100%);
+  }
+  .glow-peru {
+    box-shadow: 0 0 35px -5px rgba(196, 113, 74, 0.45);
+  }
+  .glow-sage {
+    box-shadow: 0 0 35px -5px rgba(122, 158, 135, 0.45);
+  }
+  .bg-grid {
+    @apply bg-grid-light dark:bg-grid-dark;
+    background-size: 40px 40px;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/30 rounded-full;
+  }
+}
+
+/* Smooth theme transition */
+html.theme-transition,
+html.theme-transition * {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.2s ease;
+}

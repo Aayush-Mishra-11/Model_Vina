@@ -1,0 +1,46 @@
+# Local development stack: backend on :4000, Ollama on :11434.
+# Run with: docker compose up
+#
+# Note: the frontend is NOT in here because Next.js dev mode is happier
+# running on the host (hot reload, source maps, etc.). Start it manually
+# with `cd client && npm run dev`.
+
+services:
+  backend:
+    build: .
+    container_name: conviai-backend
+    ports:
+      - "4000:4000"
+    env_file:
+      - .env
+    volumes:
+      # Persist the SQLite DB and the faster-whisper model cache across rebuilds.
+      - conviai-data:/app/server
+    restart: unless-stopped
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: conviai-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+    restart: unless-stopped
+
+  # One-shot helper to pull the mistral model on first run.
+  ollama-pull:
+    image: curlimages/curl:latest
+    depends_on:
+      - ollama
+    entrypoint: ["sh", "-c"]
+    command:
+      - |
+        echo "Waiting for Ollama..."
+        until curl -s http://ollama:11434/api/tags >/dev/null 2>&1; do sleep 2; done
+        echo "Pulling mistral model (one-time, ~4.4 GB)..."
+        curl -X POST http://ollama:11434/api/pull -d '{"name":"mistral"}'
+        echo "Done."
+
+volumes:
+  conviai-data:
+  ollama-data:
