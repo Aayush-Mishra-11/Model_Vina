@@ -9,11 +9,18 @@ from typing import Any, Dict, List
 from fastapi import APIRouter, Depends, HTTPException, status
 from pydantic import BaseModel
 
-from ..db import get_db
-from ..deps import get_current_user
-from ..llm import call_local_mistral
-from ..auth import new_id
-from ..services import rag_coaching
+try:
+    from server.db import get_db
+    from server.deps import get_current_user
+    from server.llm import call_local_mistral
+    from server.auth import new_id
+    from server.services import rag_coaching
+except (ImportError, ModuleNotFoundError):
+    from db import get_db
+    from deps import get_current_user
+    from llm import call_local_mistral
+    from auth import new_id
+    from services import rag_coaching
 
 router = APIRouter(prefix="/api/partner", tags=["partner"])
 

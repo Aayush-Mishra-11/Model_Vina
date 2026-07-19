@@ -7,8 +7,12 @@ from typing import Any, Dict, List
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 from pydantic import BaseModel
 
-from ..db import get_db
-from ..deps import get_current_user
+try:
+    from server.db import get_db
+    from server.deps import get_current_user
+except (ImportError, ModuleNotFoundError):
+    from db import get_db
+    from deps import get_current_user
 
 router = APIRouter(prefix="/api/vocabulary", tags=["vocabulary"])
 

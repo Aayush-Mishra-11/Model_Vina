@@ -8,12 +8,20 @@ from typing import Any, Dict, List
 from fastapi import APIRouter, Depends, File, Form, HTTPException, Query, UploadFile, status
 from pydantic import BaseModel
 
-from ..db import get_db
-from ..deps import get_current_user
-from ..converters.stt import transcribe_audio_bytes
-from ..analytics import calculate_metrics, is_likely_english
-from ..llm import call_local_mistral
-from ..auth import new_id
+try:
+    from server.db import get_db
+    from server.deps import get_current_user
+    from server.converters.stt import transcribe_audio_bytes
+    from server.analytics import calculate_metrics, is_likely_english
+    from server.llm import call_local_mistral
+    from server.auth import new_id
+except (ImportError, ModuleNotFoundError):
+    from db import get_db
+    from deps import get_current_user
+    from converters.stt import transcribe_audio_bytes
+    from analytics import calculate_metrics, is_likely_english
+    from llm import call_local_mistral
+    from auth import new_id
 
 router = APIRouter(prefix="/api/interview", tags=["interview"])
 

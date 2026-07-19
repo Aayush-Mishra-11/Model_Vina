@@ -7,9 +7,14 @@ from typing import Any, Dict, List
 from fastapi import APIRouter, Depends, HTTPException, status
 from pydantic import BaseModel
 
-from ..db import get_db
-from ..deps import get_current_user
-from .auth import _user_to_dict
+try:
+    from server.db import get_db
+    from server.deps import get_current_user
+    from server.routes.auth import _user_to_dict
+except (ImportError, ModuleNotFoundError):
+    from db import get_db
+    from deps import get_current_user
+    from routes.auth import _user_to_dict
 
 router = APIRouter(prefix="/api/profile", tags=["profile"])
 

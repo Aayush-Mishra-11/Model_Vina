@@ -1,12 +1,23 @@
 import os
 import sys
 
-# Ensure cache directories are redirected to D: drive
-os.environ.setdefault("HF_HOME", r"D:\.cache\huggingface")
-os.environ.setdefault("TRANSFORMERS_CACHE", r"D:\.cache\huggingface")
-os.environ.setdefault("TORCH_HOME", r"D:\.cache\torch")
-os.environ.setdefault("XDG_CACHE_HOME", r"D:\.cache")
-os.makedirs(r"D:\.cache", exist_ok=True)
+# Ensure cache directories are redirected on Windows if D: drive exists
+if os.name == "nt" and os.path.exists("D:\\"):
+    os.environ.setdefault("HF_HOME", r"D:\.cache\huggingface")
+    os.environ.setdefault("TRANSFORMERS_CACHE", r"D:\.cache\huggingface")
+    os.environ.setdefault("TORCH_HOME", r"D:\.cache\torch")
+    os.environ.setdefault("XDG_CACHE_HOME", r"D:\.cache")
+    try:
+        os.makedirs(r"D:\.cache", exist_ok=True)
+    except Exception:
+        pass
+
+SERVER_DIR = os.path.dirname(os.path.abspath(__file__))
+PARENT_DIR = os.path.dirname(SERVER_DIR)
+if PARENT_DIR not in sys.path:
+    sys.path.insert(0, PARENT_DIR)
+if SERVER_DIR not in sys.path:
+    sys.path.insert(0, SERVER_DIR)
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -27,8 +38,7 @@ try:
     from server.routes import analytics as analytics_routes
     from server.routes import reports as reports_routes
     from server.routes import streaming as streaming_routes
-except ModuleNotFoundError:
-    sys.path.insert(0, os.path.dirname(__file__))
+except (ModuleNotFoundError, ImportError):
     from migrations import run_migrations
     from db import _connect
     from routes import auth as auth_routes
@@ -43,6 +53,7 @@ except ModuleNotFoundError:
     from routes import analytics as analytics_routes
     from routes import reports as reports_routes
     from routes import streaming as streaming_routes
+
 
 
 app = FastAPI(title='ConviAI Backend')

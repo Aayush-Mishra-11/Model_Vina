@@ -13,10 +13,16 @@ from typing import Any, Dict
 
 from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile, status
 
-from .. import auth as auth_utils
-from ..db import get_db
-from ..deps import get_current_user
-from ..pipeline import process_audio_session
+try:
+    from server import auth as auth_utils
+    from server.db import get_db
+    from server.deps import get_current_user
+    from server.pipeline import process_audio_session
+except (ImportError, ModuleNotFoundError):
+    import auth as auth_utils
+    from db import get_db
+    from deps import get_current_user
+    from pipeline import process_audio_session
 
 router = APIRouter(prefix="/api", tags=["practice"])
 

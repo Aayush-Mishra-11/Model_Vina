@@ -177,7 +177,13 @@ async def stream_transcripts(
     bytes — useful for wiring to /api/speech/analyze at the end of a
     practice session.
     """
-    from ..converters.stt import transcribe_audio_full
+    try:
+        from server.converters.stt import transcribe_audio_full
+    except (ImportError, ModuleNotFoundError):
+        try:
+            from ..converters.stt import transcribe_audio_full
+        except (ImportError, ModuleNotFoundError):
+            from converters.stt import transcribe_audio_full
 
     state.started_at = time.time()
     state.last_partial_at = state.started_at

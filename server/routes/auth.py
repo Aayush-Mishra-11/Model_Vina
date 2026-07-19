@@ -7,9 +7,14 @@ from typing import Any, Dict
 from fastapi import APIRouter, Depends, HTTPException, status
 from pydantic import BaseModel, EmailStr, Field
 
-from .. import auth as auth_utils
-from ..db import get_db
-from ..deps import get_current_user
+try:
+    from server import auth as auth_utils
+    from server.db import get_db
+    from server.deps import get_current_user
+except (ImportError, ModuleNotFoundError):
+    import auth as auth_utils
+    from db import get_db
+    from deps import get_current_user
 
 router = APIRouter(prefix="/api/auth", tags=["auth"])
 
