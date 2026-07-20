@@ -196,11 +196,31 @@ def _get_model():
             except Exception:
                 pass
 
+            import torch
+            import gc
+
+            # Force single-thread execution to minimize thread memory overhead
+            torch.set_num_threads(1)
+            torch.set_num_interop_threads(1)
+
             _processor = Wav2Vec2Processor.from_pretrained(MODEL_ID)
-            _model = Wav2Vec2ForCTC.from_pretrained(MODEL_ID)
-            _model.eval()
+            raw_model = Wav2Vec2ForCTC.from_pretrained(MODEL_ID)
+            raw_model.eval()
+
+            try:
+                # Dynamic 8-bit quantization: reduces memory by ~50% (from 360MB to ~180MB)
+                _model = torch.quantization.quantize_dynamic(
+                    raw_model, {torch.nn.Linear}, dtype=torch.qint8
+                )
+                del raw_model
+                gc.collect()
+                logger.info("wav2vec: loaded %s dynamically quantized to int8", MODEL_ID)
+            except Exception as quant_exc:
+                logger.warning("wav2vec: dynamic quantization failed: %s. Falling back to float32 model.", quant_exc)
+                _model = raw_model
+                logger.info("wav2vec: loaded %s in standard float32 mode", MODEL_ID)
+
             _load_error = None
-            logger.info("wav2vec: loaded %s", MODEL_ID)
         except Exception as exc:
             _model = None
             _processor = None
