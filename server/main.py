@@ -66,11 +66,11 @@ app.add_middleware(
         'http://127.0.0.1:3000',
         'http://localhost:5173',
         'http://127.0.0.1:5173',
-        'https://vina.aayushmishra5510c.workers.dev',
-        'https://model-vina.onrender.com',
+        'https://model-vani-six.vercel.app',
+        'https://model-vani.onrender.com',
     ],
     allow_credentials=True,
-    allow_methods=['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allow_methods=['*'],
     allow_headers=['*'],
 )
 
