@@ -9,7 +9,7 @@
 
 export default {
   async fetch(request, env, ctx) {
-    const RENDER_BACKEND = "https://model-vina.onrender.com";
+    const RENDER_BACKEND = env.NEXT_PUBLIC_API_BASE_URL || "https://model-vina.onrender.com";
     const url = new URL(request.url);
 
     // Construct target URL on Render backend

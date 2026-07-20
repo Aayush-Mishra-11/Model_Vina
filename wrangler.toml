@@ -1,0 +1,6 @@
+name = "vani"
+main = "cloudflare-worker.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+NEXT_PUBLIC_API_BASE_URL = "https://model-vina.onrender.com"
