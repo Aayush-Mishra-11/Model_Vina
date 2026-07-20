@@ -67,7 +67,7 @@ app.add_middleware(
         'http://localhost:5173',
         'http://127.0.0.1:5173',
         'https://model-vani-six.vercel.app',
-        'https://model-vani.onrender.com',
+        'https://model-vani-p22q.onrender.com',
     ],
     allow_credentials=True,
     allow_methods=['*'],
