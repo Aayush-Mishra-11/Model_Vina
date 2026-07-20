@@ -19,4 +19,3 @@ transformers>=4.40
 soundfile>=0.12
 torch
 pydub
-audioop-lts
