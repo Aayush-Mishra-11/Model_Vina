@@ -26,6 +26,8 @@ COPY . /app
 # Hugging Face Spaces expects port 7860 by default. Render / Fly / generic
 # Docker hosts usually expect 8080 or PORT. We listen on 0.0.0.0:$PORT
 # so the platform can decide. Default to 4000 for local dev.
+RUN chown -R appuser:appuser /app
+
 ENV PORT=4000 \
     PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1
