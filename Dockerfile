@@ -22,8 +22,7 @@ COPY --from=builder /usr/local/lib/python3.12/site-packages /usr/local/lib/pytho
 COPY --from=builder /usr/local/bin /usr/local/bin
 
 # Copy the application source.
-COPY server/ /app/
-
+COPY server /app/server
 # Hugging Face Spaces expects port 7860 by default. Render / Fly / generic
 # Docker hosts usually expect 8080 or PORT. We listen on 0.0.0.0:$PORT
 # so the platform can decide. Default to 4000 for local dev.
